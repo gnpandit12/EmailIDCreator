@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.Editable;
 import android.text.TextUtils;
@@ -41,6 +42,7 @@ public class EnterBirthDetails extends Fragment implements AdapterView.OnItemSel
     private final String VALID_DAY = "Enter Valid Day!";
     private final String VALID_YEAR = "Enter Valid Year!";
     private final String VALID_GENDER = "Select Valid Gender!";
+    private String firstName, lastName;
 
     public EnterBirthDetails() {}
 
@@ -147,8 +149,19 @@ public class EnterBirthDetails extends Fragment implements AdapterView.OnItemSel
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderSpinner.setAdapter(arrayAdapter);
 
+        nextButton.setOnClickListener(this);
+
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getArguments() != null) {
+            EnterBirthDetailsArgs enterBirthDetailsArgs = EnterBirthDetailsArgs.fromBundle(getArguments());
+            firstName = enterBirthDetailsArgs.getFirstName();
+            lastName = enterBirthDetailsArgs.getLastName();
+        }
+    }
 
     @Override
     public void onResume() {
@@ -243,9 +256,16 @@ public class EnterBirthDetails extends Fragment implements AdapterView.OnItemSel
     @Override
     public void onClick(View v) {
         if (v == nextButton){
-            if (!TextUtils.isEmpty(selectedMonth()) && !TextUtils.isEmpty(selectedMonth()) && !TextUtils.isEmpty(selectedMonth())
-                    && !TextUtils.isEmpty(selectedGender)){
-
+            if (!TextUtils.isEmpty(selectedMonth()) && !TextUtils.isEmpty(selectedMonth()) && !TextUtils.isEmpty(selectedMonth())){
+                EnterBirthDetailsDirections.ActionBirthDetailsToGenerateEmailId actionBirthDetailsToGenerateEmailId
+                        = EnterBirthDetailsDirections.actionBirthDetailsToGenerateEmailId();
+                actionBirthDetailsToGenerateEmailId.setFirstName(firstName);
+                actionBirthDetailsToGenerateEmailId.setLastName(lastName);
+                actionBirthDetailsToGenerateEmailId.setMonth(selectedMonth());
+                actionBirthDetailsToGenerateEmailId.setDay(selectedDay());
+                actionBirthDetailsToGenerateEmailId.setYear(selectedYear());
+                actionBirthDetailsToGenerateEmailId.setGender(selectedGender);
+                Navigation.findNavController(nextButton).navigate(actionBirthDetailsToGenerateEmailId);
             }else if (TextUtils.isEmpty(selectedMonth())){
                 monthEditText.setError(VALID_MONTH);
             }else if (TextUtils.isEmpty(selectedDay())){

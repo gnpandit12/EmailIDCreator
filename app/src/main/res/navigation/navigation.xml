@@ -33,5 +33,50 @@
         <action
             android:id="@+id/action_enter_birth_details_to_enter_name"
             app:destination="@id/enterNameFragment" />
+        <action
+            android:id="@+id/action_birth_details_to_generate_email_id"
+            app:destination="@id/generatEmailID" />
+        <argument
+            android:name="first_name"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="last_name"
+            app:argType="string"
+            android:defaultValue="null" />
+    </fragment>
+    <fragment
+        android:id="@+id/generatEmailID"
+        android:name="com.example.gmail.view.GenerateEmailID"
+        android:label="fragment_generat_email_id"
+        tools:layout="@layout/fragment_generat_email_id" >
+        <action
+            android:id="@+id/action_generat_email_id_to_enter_birth_details"
+            app:destination="@id/enterBirthDetails" />
+        <argument
+            android:name="first_name"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="last_name"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="month"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="day"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="year"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="gender"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
     </fragment>
 </navigation>

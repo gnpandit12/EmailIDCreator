@@ -24,7 +24,7 @@ public class EnterNameFragment extends Fragment implements View.OnClickListener 
     private Activity mActivity;
     private EditText firstNameEditText, lastNameEditText;
     private Button nextButton;
-    private NavController navController;
+//    private NavController navController;
 
     public EnterNameFragment(){
 
@@ -47,7 +47,7 @@ public class EnterNameFragment extends Fragment implements View.OnClickListener 
         firstNameEditText = view.findViewById(R.id.first_name_edit_text);
         lastNameEditText = view.findViewById(R.id.last_name_edit_text);
         nextButton = view.findViewById(R.id.next_button);
-        navController = Navigation.findNavController(getActivity(), R.id.my_nav_host_fragment);
+//        navController = Navigation.findNavController(getActivity(), R.id.my_nav_host_fragment);
         nextButton.setOnClickListener(this);
 
     }
@@ -56,7 +56,12 @@ public class EnterNameFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         if (v == nextButton){
             if (!TextUtils.isEmpty(firstName()) && !TextUtils.isEmpty(lastName())){
-                navController.navigate(R.id.action_enter_name_to_enter_birth_details);
+//                navController.navigate(R.id.action_enter_name_to_enter_birth_details);
+                EnterNameFragmentDirections.ActionEnterNameToEnterBirthDetails actionEnterNameToEnterBirthDetails =
+                        EnterNameFragmentDirections.actionEnterNameToEnterBirthDetails();
+                actionEnterNameToEnterBirthDetails.setFirstName(firstName());
+                actionEnterNameToEnterBirthDetails.setLastName(lastName());
+                Navigation.findNavController(v).navigate(actionEnterNameToEnterBirthDetails);
             }else if (TextUtils.isEmpty(firstName())){
                 firstNameEditText.setError("Enter First Name");
             }else if (TextUtils.isEmpty(lastName())){
