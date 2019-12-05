@@ -12,4 +12,5 @@
     <string name="basic_information">Basic Information</string>
     <string name="enter_your_birthday_and_gender">Enter your birthday and gender</string>
     <string name="gender">Gender</string>
+    <string name="select_gender">Select Gender</string>
 </resources>
