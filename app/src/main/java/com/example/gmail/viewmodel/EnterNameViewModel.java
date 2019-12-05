@@ -4,8 +4,6 @@ import android.text.TextUtils;
 
 import androidx.lifecycle.ViewModel;
 
-import com.example.gmail.databinding.ActivityEnterNameBinding;
-
 public class EnterNameViewModel extends ViewModel {
 
     private String firstName;
@@ -13,9 +11,6 @@ public class EnterNameViewModel extends ViewModel {
     private boolean isNameEntered = false;
 
     public EnterNameViewModel(){}
-
-
-
 
 
 }

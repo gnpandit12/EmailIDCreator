@@ -3,4 +3,13 @@
     <string name="create_email">Create Email ID</string>
     <string name="enter_name">Enter your name</string>
     <string name="next">Next</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="month">Month</string>
+    <string name="day">Day</string>
+    <string name="year">Year</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="enter_your_birthday_and_gender">Enter your birthday and gender</string>
+    <string name="gender">Gender</string>
 </resources>
